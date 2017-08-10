@@ -1,9 +1,3 @@
-// Improvements to make
-// Update the images to not show the background colors and spread across entire div
-// change text color to white and bold and then overlay over the image
-// change the positioning so that it flows better
-
-
 // Overall game is stored in object
 // game play object houses all functions  and additional variables of the game
 function reset() {
@@ -16,7 +10,7 @@ function reset() {
     gameOver: false,
     jediMaster: false,
     characterArrayList: [
-      // 1.  An array or object of possible characters properties would incldue 
+      // An array or object of possible characters properties would incldue 
       // name, picture, Health Points, Attack Power and counter attack power
 
       {
