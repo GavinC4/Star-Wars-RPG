@@ -1,3 +1,7 @@
+// really just need to gather all of the img and audio i need to finish the game is 90% complete i think
+
+
+
 // Overall game is stored in object
 // game play object houses all functions  and additional variables of the game
 function reset() {
