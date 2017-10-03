@@ -1,7 +1,3 @@
-// really just need to gather all of the img and audio i need to finish the game is 90% complete i think
-
-
-
 // Overall game is stored in object
 // game play object houses all functions  and additional variables of the game
 function reset() {
@@ -72,11 +68,11 @@ function reset() {
     yourCurrentAttackPower: null,
     winOccurred: false,
 
-  // create an array of battle sounds
+    // create an array of battle sounds
     battleSoundsArray: ['assets/audio/saberclash.mp3', 'assets/audio/saberclash1.mp3', 'assets/audio/saberclash2.mp3', 'assets/audio/saberclash3.mp3', 'assets/audio/saberclash4.mp3', 'assets/audio/saberclash5.mp3', 'assets/audio/saberclash6.mp3', 'assets/audio/spin1.mp3', 'assets/audio/spin2.mp3','assets/audio/spin3.mp3','assets/audio/spin4.mp3','assets/audio/spin5.mp3','assets/audio/spin6.mp3', 'assets/audio/swing1.mp3','assets/audio/swing2.mp3', ],
     characherSelectSound: 'assets/audio/saberon.mp3',
 
-  // picks at random battle sound when the attack button is pressed
+    // picks at random battle sound when the attack button is pressed
     battleSoundPick: function() {
           return this.battleSoundsArray[Math.floor(Math.random() * this.battleSoundsArray.length)];
       },
@@ -88,16 +84,16 @@ function reset() {
 // STAGE 1: Initial Setup/ Display
 $(document).ready(function() {
   reset();
-  // gets the link for the theme song to be played in the background
-   var audioElement = document.createElement('audio');
-   audioElement.autoplay = true;
-   audioElement.loop = true;
-     audioElement.setAttribute('src', 'assets/audio/starwars.m4a');
+    // gets the link for the theme song to be played in the background
+    var audioElement = document.createElement('audio');
+    audioElement.autoplay = true;
+    audioElement.loop = true;
+    audioElement.setAttribute('src', 'assets/audio/starwars.m4a');
 
-     // displays the modal
+    // displays the modal
     $('#myModal').modal('show');
 
-  function render() {
+    function render() {
     // setting variables set to id tags with html elements for easy reference later
     // using the $ before variables indicates that they are jQuery objects, it doesn't affect perfermance of the variables
     var $charList = $('#characterList');
@@ -107,7 +103,6 @@ $(document).ready(function() {
     var $yourEnemy = $('#yourEnemy');
     var $winText = $('#attackText');
     var $lossText = $('#attackText');
-    // var $wounded = $('#attackText');
     var $gameOver = $('#gameOver');
     var $jediText = $('#attackText');
     
@@ -117,8 +112,7 @@ $(document).ready(function() {
     var $winTemplate = _.template($('#winTmpl').html());
     var $lossTemplate = _.template($('#lossTmpl').html());
     var $jediTemplate = _.template($('#jediTmpl').html());
-    // var $woundTemplate = 
-
+    
     // Haven't selected Character
     var charHtml = "";
     $yourCharacter.html("");
@@ -198,7 +192,7 @@ $(document).ready(function() {
     $('#characterList').on('click', '.characterContainer', function(e) {
       // pause current audio to allow for battle sounds
       audioElement.pause();
-    // TODO: set the AUDIO to saberon.mp3
+      // TODO: set the AUDIO to saberon.mp3
 
       // references the characterList
       var element = $(this);
@@ -222,7 +216,7 @@ $(document).ready(function() {
     $('#enemyList').on('click', '.characterContainer', function(e) {
       var element = $(this);
       var charIndex = element.data('character-index');
-      // current enemy was initially set as null so when your enemy != this if runs 
+    // current enemy was initially set as null so when your enemy != this if runs 
     if (!gameObj.currentEnemy) {
       // creates an array that houses the enemy character
       gameObj.winOccurred = false;
@@ -255,19 +249,15 @@ $(document).ready(function() {
       var currentEnemy = gameObj.currentEnemy;
       //increment yourAttackPower by yourCharacter.attackPower
       gameObj.yourCurrentAttackPower  = gameObj.yourCurrentAttackPower + yourCharacter.attackPower;
-    //decrease enemy health points by yourAttackPower state
+      //decrease enemy health points by yourAttackPower state
       currentEnemy.healthPoints = currentEnemy.healthPoints - gameObj.yourCurrentAttackPower; 
       //decrease your health points by enemy's counterAttackPower
       yourCharacter.healthPoints = yourCharacter.healthPoints - currentEnemy.counterAttackPower;
       console.log ("enenemy health points: " + currentEnemy.healthPoints + ' your health: ' + yourCharacter.healthPoints);
 
       var $audioBattle = document.createElement('audio');
-                    $audioBattle.setAttribute('src', gameObj.battleSoundPick());
-                    $audioBattle.play();
-                    
-
-
-      
+          $audioBattle.setAttribute('src', gameObj.battleSoundPick());
+          $audioBattle.play();
       // Win scenario
       // set win variable  and loss in order to consolidate win ifs. 
       var win = (currentEnemy.healthPoints < 1 && yourCharacter.healthPoints > 1 || 
@@ -280,8 +270,6 @@ $(document).ready(function() {
               (yourCharacter.healthPoints < currentEnemy.healthPoints))
              ) ? true: false;
 
-
-    
       // First if is only if user has defeated all of the enemies     
       if (win) { 
         
@@ -294,11 +282,10 @@ $(document).ready(function() {
         gameObj.lastOpponent = gameObj.currentEnemy;
         gameObj.currentEnemy = null;
         // need to figure out how to show another error when your character points are less 0. Show error "you are seriously wounded. GAME OVER"
-          // if (yourCharacter.healthPoints =< 0) {
-          //  gameObj.wounded = true;
-          //  // gameObj.winOccurred = false;
-
-          // }
+        // if (yourCharacter.healthPoints =< 0) {
+        //  gameObj.wounded = true;
+        // gameObj.winOccurred = false;
+        // }
       
       }  
       // scenario when you have defeated all characters
@@ -309,8 +296,7 @@ $(document).ready(function() {
         gameObj.attackOccurred = false; 
         gameObj.jediMaster = true;
 
-      }  
-        
+      }       
         
       }
        // Loss Scenario
@@ -324,9 +310,7 @@ $(document).ready(function() {
       }
       render();
 
-    });
-
-      
+    });      
 
     render();
 
