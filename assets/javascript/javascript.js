@@ -1,6 +1,3 @@
-/*! Backstretch - v2.0.4 - 2013-06-19
- * http://srobbin.com/jquery-plugins/backstretch/
- * Copyright (c) 2013 Scott Robbin; Licensed MIT */
 (function(a, d, p) { a.fn.backstretch = function(c, b) {
         (c === p || 0 === c.length) && a.error("No images were supplied for Backstretch");
         0 === a(d).scrollTop() && d.scrollTo(0, 0);
